@@ -1,0 +1,25 @@
+genre,ID_genre
+Action,GEN-001
+Adventure,GEN-002
+Animation,GEN-003
+Biography,GEN-004
+Comedy,GEN-005
+Crime,GEN-006
+Documentary,GEN-007
+Drama,GEN-008
+Family,GEN-009
+Fantasy,GEN-010
+History,GEN-011
+Horror,GEN-012
+Music,GEN-013
+Musical,GEN-014
+Mystery,GEN-015
+Not classified,GEN-016
+Reality-TV,GEN-017
+Romance,GEN-018
+Sci-Fi,GEN-019
+Short,GEN-020
+Sport,GEN-021
+Thriller,GEN-022
+War,GEN-023
+Western,GEN-024
