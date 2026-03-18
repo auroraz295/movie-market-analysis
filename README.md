@@ -2,7 +2,6 @@
 Un'analisi comparativa tra il mercato Mondiale e Italiano (2015-2025)
 
 📌 Project Overview
-
 Questo progetto di Capstone dimostra l'intero ciclo di vita del dato. Partendo dal Web Scraping di dati grezzi da Box Office Mojo, ho progettato un Database Relazionale in MySQL e realizzato una Dashboard interattiva in Power BI. L'obiettivo è analizzare l'andamento del cinema nell'ultimo decennio, confrontando i trend globali con quelli del mercato italiano.
 
 🛠️ Tech Stack
@@ -57,3 +56,40 @@ Distribution & Genre Analysis: Analisi volumetrica per capire "chi" distribuisce
 Handling M2M Relationships: La gestione della Bridge Table in Power BI ha permesso di filtrare l'intero report per singolo genere, nonostante l'origine dato fosse una stringa complessa.
 
 Data Consistency: La pulizia tramite Python ha garantito la coerenza tra i titoli presenti nelle classifiche diverse, normalizzando i nomi dei distributori.
+
+🚀 Guida all'Utilizzo (How to Use)
+Il progetto è stato concepito come un flusso di lavoro sequenziale che trasforma i dati web in insight visuali. Per replicare l'analisi o esplorare il funzionamento della pipeline, segui questi passaggi:
+
+1. Setup dell'Ambiente e Dipendenze
+È necessario un ambiente Python 3.x equipaggiato con i package per il data crawling e la manipolazione di dataset complessi.
+
+Librerie richieste: BeautifulSoup4 per il parsing HTML, Pandas e NumPy per la strutturazione dei dati e mysql-connector-python per l'interfaccia con il DB.
+
+Database: Un'istanza locale attiva di MySQL Server.
+
+2. Inizializzazione del Database Relazionale
+Prima dell'esecuzione dello script di scraping, occorre predisporre il layer di persistenza dei dati:
+
+Eseguire lo script SQL fornito nel repository per inizializzare lo schema.
+
+Lo script genererà automaticamente le tabelle normalizzate e le foreign key necessarie a garantire l'integrità referenziale tra le entità (film, generi e classifiche).
+
+3. Esecuzione della Pipeline ETL
+Il processo di estrazione e caricamento è gestito dallo script principale, che implementa una logica di scraping ricorsivo a tre livelli:
+
+Configurare le credenziali di accesso al database (Host, User, Password) nelle variabili di connessione del file Python.
+
+Avviare lo script per far partire l'iterazione sulle directory annuali (2015-2025).
+
+Lo script gestisce autonomamente il flusso di richieste per evitare l'overload dei server, eseguendo il parsing dei metadati e il caricamento transazionale direttamente su MySQL.
+
+Nota: I dati vengono estratti dinamicamente dallo script Python e caricati direttamente nel database locale. I file CSV intermedi non sono inclusi nel repository per mantenere la struttura snella, ma vengono generati automaticamente durante l'esecuzione.
+
+4. Connessione e Refresh del Report Power BI
+Una volta completato il popolamento del database, il report è pronto per l'analisi:
+
+Aprire il file .pbix.
+
+Il modello dati è pre-configurato per il querying verso il database locale. È sufficiente aggiornare i parametri di connessione (Origine Dati) con le proprie credenziali locali.
+
+Eseguire un Refresh globale: Power BI importerà i dati aggiornati tramite il connettore MySQL, popolando istantaneamente le dashboard interattive e le misure DAX.
